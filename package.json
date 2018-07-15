@@ -1,0 +1,8 @@
+{
+  "name": "x-press-comics",
+  "version": "0.0.0",
+  "description": "An internal management tool for a comic book publishing company called X-Press Comics.",
+  "main": "index.js",
+  "author": "Steve Toro <steve@stevetoro.com>",
+  "license": "ISC"
+}
