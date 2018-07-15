@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "An internal management tool for a comic book publishing company called X-Press Comics.",
   "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
   "author": "Steve Toro <steve@stevetoro.com>",
   "license": "ISC",
   "dependencies": {
@@ -12,5 +15,8 @@
     "express": "^4.16.3",
     "morgan": "^1.9.0",
     "sqlite3": "^4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.2"
   }
 }
