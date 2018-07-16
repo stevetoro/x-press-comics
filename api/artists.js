@@ -3,17 +3,6 @@ const artistsRouter = express.Router();
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('./database.sqlite');
 
-artistsRouter.param('artistId', (req, res, next, artistId) => {
-  db.get(`SELECT * FROM Artist WHERE Artist.id = ${artistId}`, (err, artist) => {
-    if (err) return next(err);
-    if (artist) {
-      req.artist = artist;
-      return next();
-    }
-    return res.sendStatus(404);
-  });
-});
-
 artistsRouter.get('/', (req, res, next) => {
   db.all('SELECT * FROM Artist WHERE Artist.is_currently_employed = 1', (err, artists) => {
     if (err) return next(err);
@@ -42,6 +31,17 @@ artistsRouter.post('/', (req, res, next) => {
       });
     }
   );
+});
+
+artistsRouter.param('artistId', (req, res, next, artistId) => {
+  db.get(`SELECT * FROM Artist WHERE Artist.id = ${artistId}`, (err, artist) => {
+    if (err) return next(err);
+    if (artist) {
+      req.artist = artist;
+      return next();
+    }
+    return res.sendStatus(404);
+  });
 });
 
 artistsRouter.get('/:artistId', (req, res, next) => {
