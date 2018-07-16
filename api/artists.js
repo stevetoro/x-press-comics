@@ -23,7 +23,7 @@ artistsRouter.get('/', (req, res, next) => {
 
 artistsRouter.post('/', (req, res, next) => {
   const { name, date_of_birth, biography, is_currently_employed = 1 } = req.body.artist;
-  if (!(name && date_of_birth && biography)) return res.sendStatus(400);
+  if (!(name && date_of_birth && biography))return res.sendStatus(400);
 
   db.run(`
     INSERT INTO Artist (name, date_of_birth, biography, is_currently_employed)
@@ -50,8 +50,7 @@ artistsRouter.get('/:artistId', (req, res, next) => {
 
 artistsRouter.put('/:artistId', (req, res, next) => {
   const { name, date_of_birth, biography, is_currently_employed = 1 } = req.body.artist;
-  if (!(name && date_of_birth && biography))
-    return res.sendStatus(400);
+  if (!(name && date_of_birth && biography)) return res.sendStatus(400);
 
   db.run(`
     UPDATE Artist SET name = $name, 
