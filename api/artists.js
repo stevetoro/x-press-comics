@@ -68,7 +68,7 @@ artistsRouter.put('/:artistId', (req, res, next) => {
       if (err) return next(err);
       db.get(`SELECT * FROM Artist WHERE Artist.id = ${req.params.artistId}`, (err, artist) => {
         if (err) return next(err);
-        return res.status(201).send({ artist });
+        return res.status(200).send({ artist });
       });
     }
   );
