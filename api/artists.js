@@ -6,12 +6,10 @@ const db = new sqlite3.Database('./database.sqlite');
 artistsRouter.param('artistId', (req, res, next, artistId) => {
   db.get(`SELECT * FROM Artist WHERE Artist.id = ${artistId}`, (err, artist) => {
     if (err) return next(err);
-
     if (artist) {
       req.artist = artist;
       return next();
     }
-
     return res.sendStatus(404);
   });
 });
@@ -25,8 +23,7 @@ artistsRouter.get('/', (req, res, next) => {
 
 artistsRouter.post('/', (req, res, next) => {
   const { name, date_of_birth, biography, is_currently_employed = 1 } = req.body.artist;
-  if (!(name && date_of_birth && biography))
-    return res.sendStatus(400);
+  if (!(name && date_of_birth && biography)) return res.sendStatus(400);
 
   db.run(`
     INSERT INTO Artist (name, date_of_birth, biography, is_currently_employed)
