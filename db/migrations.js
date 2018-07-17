@@ -1,4 +1,9 @@
 const sqlite3 = require('sqlite3');
+const fs = require('fs');
+
+if (!fs.existsSync('./database.sqlite'))
+  fs.writeFileSync('./database.sqlite', '', { flag: 'wx' });
+
 const db = new sqlite3.Database('./database.sqlite');
 
 db.serialize(() => {
